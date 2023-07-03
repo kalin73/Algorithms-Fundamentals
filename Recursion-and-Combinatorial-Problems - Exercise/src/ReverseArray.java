@@ -1,42 +1,33 @@
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class ReverseArray {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		
-		List<Integer> list = Arrays
-				.stream(sc.nextLine().split(" "))
-				.map(Integer::parseInt)
-				.collect(Collectors.toList());
 
-		reverse(list, 0);
-		
-		String reversedList = list
-				.stream()
-				.map(String::valueOf)
-				.collect(Collectors.joining(" "));
+		String[] elements = sc.nextLine().split(" ");
+
+		reverse(elements, 0);
+
+		String reversedList = String.join(" ", elements);
 
 		System.out.println(reversedList);
-		
+
 		sc.close();
 	}
 
-	private static void reverse(List<Integer> list, int index) {
-		if (index == list.size() / 2) {
+	private static void reverse(String[] elements, int index) {
+		if (index == elements.length / 2) {
 			return;
 		}
-		swap(list, index, list.size() - 1 - index);
+		swap(elements, index, elements.length - 1 - index);
 
-		reverse(list, index + 1);
+		reverse(elements, index + 1);
 	}
 
-	private static void swap(List<Integer> list, int index1, int index2) {
-		int temp = list.get(index1);
-		list.set(index1, list.get(index2));
-		list.set(index2, temp);
+	private static void swap(String[] elements, int index1, int index2) {
+		String temp = elements[index1];
+		elements[index1] = elements[index2];
+		elements[index2] = temp;
 
 	}
 }
