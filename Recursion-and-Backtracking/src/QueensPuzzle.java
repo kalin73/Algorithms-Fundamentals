@@ -90,7 +90,7 @@ public class QueensPuzzle {
 	private static void printSolution() {
 		for (int row = 0; row < chessBoard.length; row++) {
 			for (int col = 0; col < chessBoard[row].length; col++) {
-				System.out.print(chessBoard[row][col]);
+				System.out.print(chessBoard[row][col]+" ");
 			}
 			System.out.println();
 		}
