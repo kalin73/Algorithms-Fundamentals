@@ -6,31 +6,31 @@ public class PermutationsWithoutRepetitions {
 		Scanner sc = new Scanner(System.in);
 
 		String[] elements = sc.nextLine().split(" ");
-		String[] permutes = new String[elements.length];
-		boolean[] used = new boolean[elements.length];
 
-		permute(elements, permutes, used, 0);
+		permute(elements, 0);
 
 		sc.close();
 
 	}
 
-	private static void permute(String[] elements, String[] permutes, boolean[] used, int index) {
+	private static void permute(String[] elements, int index) {
 		if (index == elements.length) {
-			print(permutes);
+			print(elements);
 			return;
 		}
+		permute(elements, index + 1);
 
-		for (int i = 0; i < elements.length; i++) {
-			if (!used[i]) {
-				used[i] = true;
-
-				permutes[index] = elements[i];
-				permute(elements, permutes, used, index + 1);
-
-				used[i] = false;
-			}
+		for (int i = index + 1; i < elements.length; i++) {
+			swap(elements, index, i);
+			permute(elements, index + 1);
+			swap(elements, index, i);
 		}
+	}
+
+	private static void swap(String[] arr, int first, int second) {
+		String temp = arr[first];
+		arr[first] = arr[second];
+		arr[second] = temp;
 
 	}
 
