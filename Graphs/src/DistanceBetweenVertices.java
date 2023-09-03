@@ -10,7 +10,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class DistanceBetweenVertices {
-	private static int shortestPath = Integer.MAX_VALUE;
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -38,8 +37,6 @@ public class DistanceBetweenVertices {
 			int[] pair = Arrays.stream(sc.nextLine().split("-")).mapToInt(Integer::parseInt).toArray();
 
 			findDistance(graph, pair[0], pair[1]);
-
-			shortestPath = Integer.MAX_VALUE;
 		}
 
 		sc.close();
@@ -67,16 +64,15 @@ public class DistanceBetweenVertices {
 					visited.add(child);
 
 					if (child == end) {
-						calculatePath(paths, start, end);
+						break;
 					}
 				}
-
 			}
 		}
 		printResult(paths, start, end);
 	}
 
-	private static void calculatePath(Map<Integer, Integer> paths, int start, int end) {
+	private static void printResult(Map<Integer, Integer> paths, int start, int end) {
 		int counter = 0;
 		int parent = paths.containsKey(end) ? paths.get(end) : -1;
 
@@ -85,17 +81,10 @@ public class DistanceBetweenVertices {
 			parent = paths.get(parent);
 		}
 
-		shortestPath = counter < shortestPath ? counter : shortestPath;
-	}
-
-	private static void printResult(Map<Integer, Integer> paths, int start, int end) {
-		int edges = shortestPath == Integer.MAX_VALUE ? -1 : shortestPath;
-
-		String result = String.format("{%d, %d} -> %d", start, end, edges);
+		counter = counter == 0 ? -1 : counter;
+		String result = String.format("{%d, %d} -> %d", start, end, counter);
 
 		System.out.println(result);
-
-		shortestPath = Integer.MAX_VALUE;
 	}
 
 }
