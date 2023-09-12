@@ -1,6 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -8,12 +8,12 @@ import java.util.Set;
 
 public class CyclesInGraph {
 	private static char parent;
-	private static boolean isAcyclic = true;;
+	private static boolean isAcyclic = true;
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
-		Map<Character, List<Character>> graph = new LinkedHashMap<>();
+		Map<Character, List<Character>> graph = new HashMap<>();
 		Set<Character> visited = new HashSet<>();
 
 		String input = sc.nextLine();
