@@ -46,9 +46,9 @@ public class MergeSort {
 		int left = begin;
 		int right = mid + 1;
 
-		int[] helper = new int[arr.length];
+		int[] helper = new int[end + 1];
 
-		for (int i = 0; i < arr.length; i++) {
+		for (int i = begin; i <= end; i++) {
 			helper[i] = arr[i];
 		}
 
