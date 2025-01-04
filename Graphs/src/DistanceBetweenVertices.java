@@ -59,13 +59,15 @@ public class DistanceBetweenVertices {
 
 			for (Integer child : graph.get(parent)) {
 				if (!visited.contains(child)) {
-					paths.put(child, parent);
-					queue.offer(child);
 					visited.add(child);
-
+					paths.put(child, parent);
+					
 					if (child == end) {
 						break;
 					}
+					
+					queue.offer(child);
+
 				}
 			}
 		}
