@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class Salaries {
 	private static List<List<Integer>> graph = new ArrayList<>();
 	private static long[] salaries;
-	private static boolean[] visited;
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -14,7 +13,6 @@ public class Salaries {
 		int employees = Integer.parseInt(sc.nextLine());
 
 		salaries = new long[employees];
-		visited = new boolean[employees];
 
 		int[] managersCount = new int[employees];
 
@@ -51,23 +49,17 @@ public class Salaries {
 	}
 
 	private static void dfs(int node) {
-		if (visited[node]) {
+		if (graph.get(node).isEmpty()) {
+			salaries[node] = 1;
 			return;
 		}
 
-		visited[node] = true;
-
 		for (Integer child : graph.get(node)) {
-			if (!visited[child]) {
+			if (salaries[child] == 0) {
 				dfs(child);
-				long sum = graph.get(child).stream().mapToLong(c -> salaries[c]).sum();
-
-				salaries[child] = sum == 0 ? 1 : sum;
 			}
+			salaries[node] += salaries[child];
 		}
-		long sum = graph.get(node).stream().mapToLong(c -> salaries[c]).sum();
-
-		salaries[node] = sum == 0 ? 1 : sum;
 	}
 
 }
